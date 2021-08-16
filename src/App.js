@@ -1,24 +1,22 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Form from "./components/Form"
 import Tasks from './components/Tasks';
+
 
 const App = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const baseUrlHeroku = 'https://todo-fastapi-pydevt.herokuapp.com/'
+  const baseUrlLocal = 'http://127.0.0.1:8000/'
 
   useEffect(() => {
-    fetch("https://todo-fastapi-pydevt.herokuapp.com/",
-      {
-        crossDomain:true,
-        method: 'GET',
-        headers: {'Content-Type':'application/json'}
-      })
-      .then(res => res.json())
+      axios.get(baseUrlHeroku)
       .then(
-        (result) => {
+        (res) => {
           setIsLoaded(true)
-          setTasks(result)
+          setTasks(res.data)
         },
         (error) => {
           setIsLoaded(true)
