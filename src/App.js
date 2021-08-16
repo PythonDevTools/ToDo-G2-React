@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from './api'
 import Form from "./components/Form"
 import Tasks from './components/Tasks';
 
@@ -12,7 +12,7 @@ const App = () => {
   const baseUrlLocal = 'http://127.0.0.1:8000/'
 
   useEffect(() => {
-      axios.get(baseUrlHeroku)
+      API.get()
       .then(
         (res) => {
           setIsLoaded(true)
