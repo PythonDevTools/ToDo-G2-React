@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import Form from "./components/Form"
+import Tasks from './components/Tasks';
 
-function App() {
+const App = () => {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    fetch("https://todo-fastapi-pydevt.herokuapp.com/",
+      {
+        crossDomain:true,
+        method: 'GET',
+        headers: {'Content-Type':'application/json'}
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true)
+          setTasks(result)
+        },
+        (error) => {
+          setIsLoaded(true)
+          setError(error)
+        }
+      )
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Form />
+      { !error && isLoaded && tasks.length > 0 ? <Tasks tasks={tasks} />
+        : <p>Cargando...</p>
+      }
     </div>
   );
 }
