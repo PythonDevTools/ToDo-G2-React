@@ -8,8 +8,6 @@ const App = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const baseUrlHeroku = 'https://todo-fastapi-pydevt.herokuapp.com/'
-  const baseUrlLocal = 'http://127.0.0.1:8000/'
 
   useEffect(() => {
       API.get()
