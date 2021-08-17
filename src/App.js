@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import API from './api'
 import Form from "./components/Form"
 import Tasks from './components/Tasks';
+
 
 const App = () => {
   const [error, setError] = useState(null);
@@ -8,17 +10,11 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch("https://todo-fastapi-pydevt.herokuapp.com/",
-      {
-        crossDomain:true,
-        method: 'GET',
-        headers: {'Content-Type':'application/json'}
-      })
-      .then(res => res.json())
+      API.get()
       .then(
-        (result) => {
+        (res) => {
           setIsLoaded(true)
-          setTasks(result)
+          setTasks(res.data)
         },
         (error) => {
           setIsLoaded(true)
