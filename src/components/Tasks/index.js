@@ -1,23 +1,14 @@
+import Task from "../Task";
+
 const Tasks = ({ tasks }) => {
     return(
         <div className="tasks">
-            <h2>Tasks</h2>
-            <ul>
-                {tasks.map(task => {
-                    return(
-                        <li key={task.id}>
-                            <div>
-                                <a href={task.url}>{task.title}: </a>
-                                <span>{task.content}</span>
-                            </div>
-                            <div>
-                                <span>{task.due}</span> | <span>{task.done ? 'Done' : 'To do'}</span>
-                            </div>
-                        </li>
-                    );
+            {tasks.map(({ id, title, content, due, done}) => {
+                return(
+                    <Task id={id} title={title} content={content} due={due} done={done} />
+                );
                 }
-                )}
-            </ul>
+            )}
         </div>
     )
 }
