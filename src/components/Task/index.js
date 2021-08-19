@@ -1,21 +1,27 @@
-// Functional component React Task using Tailwind CSS
+import { StyledTask } from "./index.styled"
 
 const Task = ({ id, title, content, due, done}) => {
+    let date = due.split('T')
+    let day = date[0].split('-').reverse().join('/')
+    let time = date[1].split('.')
+
     return(
-        <div className="task">
+        <StyledTask id={id}>
             <div className="task-title">
-                <h3>{title}</h3>
+                <h3>Task #{id}: {title}</h3>
             </div>
             <div className="task-content">
                 <p>{content}</p>
             </div>
-            <div className="task-due">
-                <p>Due: {due}</p>
+            <div className="wrapper-due">
+                <div className="task-due">
+                    <p>Due: {`${day}`} at {`${time[0]}`}</p>
+                </div>
+                <div className="task-done">
+                    <p>Done? <span>{done ? '🟢' : '⛔'}</span></p>
+                </div>
             </div>
-            <div className="task-done">
-                <p>Done: {done}</p>
-            </div>
-        </div>
+        </StyledTask>
     )
 }
 
