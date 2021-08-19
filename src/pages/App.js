@@ -23,7 +23,7 @@ const App = () => {
           setError(error)
         }
       )
-  }, [tasks])
+  }, [])
 
   return (
     <StyledApp>
