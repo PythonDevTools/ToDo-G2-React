@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import API from '../../api'
+import { StyledForm, Input, Textarea, Buttom } from './index.styled';
 
 const Form = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -13,13 +14,13 @@ const Form = () => {
   }
   
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="Title" {...register("title", {required: true, maxLength: 80})} />
-      <input type="text" placeholder="Content" {...register("content", {})} />
-      <input type="datetime-local" placeholder="Due Date" {...register("due", {})} />
+    <StyledForm onSubmit={handleSubmit(onSubmit)} >
+      <Input type="text" placeholder="Title" {...register("title", {required: true, maxLength: 80})} />
+      <Textarea type="text" placeholder="Content" {...register("content", {required: true})} />
+      <Input type="datetime-local" placeholder="Due Date" {...register("due", {required: true})} />
 
-      <input type="submit" />
-    </form>
+      <Buttom type="submit" />
+    </StyledForm>
   );
 }
 

@@ -1,15 +1,16 @@
 import Task from "../Task";
+import { StyledTasks } from "./index.styled"
 
 const Tasks = ({ tasks }) => {
     return(
-        <div className="tasks">
+        <StyledTasks>
             {tasks.map(({ id, title, content, due, done}) => {
                 return(
                     <Task id={id} title={title} content={content} due={due} done={done} />
                 );
                 }
             )}
-        </div>
+        </StyledTasks>
     )
 }
 
