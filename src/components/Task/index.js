@@ -1,3 +1,4 @@
+import Button from "../Button"
 import { StyledTask } from "./index.styled"
 
 const Task = ({ id, title, content, due, done}) => {
@@ -9,6 +10,10 @@ const Task = ({ id, title, content, due, done}) => {
         <StyledTask id={id}>
             <div className="task-title">
                 <h3>Task #{id}: {title}</h3>
+                <div className="action-buttons">
+                    <Button edit={true} text="📝" />
+                    <Button edit={false} text="💥" />
+                </div>
             </div>
             <div className="task-content">
                 <p>{content}</p>

@@ -4,6 +4,8 @@ import Tasks from '../components/Tasks';
 import { StyledApp } from "./App.styled"
 import API from '../api'
 import Credits from '../components/Credits';
+import NoTasks from '../components/NoTasks';
+import ErrorTasks from '../components/ErrorTasks';
 
 
 const App = () => {
@@ -23,21 +25,21 @@ const App = () => {
           setError(error)
         }
       )
-  }, [])
+  }, [isLoaded])
 
   return (
     <StyledApp>
       <div className="sidebar">
-        <Form />
+        <Form dataForm={dataForm => setIsLoaded(dataForm)} />
         <Credits />
       </div>
       <div>
         { 
           !error ? 
             isLoaded && tasks.length === 0 ?
-              <p>No hay tareas</p>
+              <NoTasks />
               : <Tasks tasks={tasks} />
-          : <p>Ups</p>
+          : <ErrorTasks />
         }
       </div>
     </StyledApp>

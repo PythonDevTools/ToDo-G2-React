@@ -4,9 +4,9 @@ import { StyledTasks } from "./index.styled"
 const Tasks = ({ tasks }) => {
     return(
         <StyledTasks>
-            {tasks.map(({ id, title, content, due, done}) => {
+            {tasks.map(({ id, title, content, due, done }) => {
                 return(
-                    <Task id={id} title={title} content={content} due={due} done={done} />
+                    <Task key={`key-${id}`} id={id} title={title} content={content} due={due} done={done} />
                 );
                 }
             )}

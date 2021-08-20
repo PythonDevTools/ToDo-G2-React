@@ -16,6 +16,12 @@ export const StyledTask = styled.div`
     font-size: 0.9rem;
     color: #fff;
 
+    .task-title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     .wrapper-due {
         display: flex;
         align-items: center;
