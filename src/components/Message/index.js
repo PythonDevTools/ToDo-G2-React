@@ -1,11 +1,11 @@
 import { StyledError } from './index.styled'
 
-const ErrorTasks = () => {
+const Message = ({ msg }) => {
     return(
         <StyledError>
-            Ups, hay algo mal que no está bien 🙈
+            {msg}
         </StyledError>
     )
 }
 
-export default ErrorTasks;
+export default Message;
